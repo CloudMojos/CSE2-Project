@@ -31,9 +31,9 @@ function makeGuess(g, c) {
     
     // Checks for the exact
     for (let i = 0; i < 4; i++){
-        if (g[i] == c[i]) {
+        if (g[i] == code[i]) {
             black++;
-            code.splice(i, 1);
+            code[i] = 0;
             continue;
         }
        // Checks for the contain
