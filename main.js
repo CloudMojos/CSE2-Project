@@ -18,38 +18,35 @@ function getValues() {
 
 function mastermind(codeArray) {
     // Initial guess
-    initialGuess = [1, 1, 2, 2]
+    const initialGuess = [1, 1, 2, 2]
+    console.log(`Guess: ${initialGuess}`);
     makeGuess(initialGuess, codeArray);
-    //
 }
 
 function makeGuess(g, c) {
-    // Check how many are ⚫
+    // Check how many are ⚫, and ⚪
     let black = 0; // black == exact position
-    let inCode = []; // white == in code, not exact pos
-    for (let i = 0; i < 4; i++)
-    {
-        if (g[i] == c[i]) { 
-            black++;
-            inCode.push(g[i]);
-        }
-    }
-    // Check how many are ⚪
-    let white = 0;
+    let white = 0;  // white == in code, not exact pos
+    let code = [...c];
     
-    for (let i = 0; i < 4; i++)
-    {
-        for (let j = 0; j < 4; j++) {
-            if (inCode.includes(g[i])) {
-                break; // break if it's already in code
-            }
-            else if (c.includes(g[i])) {
-                inCode.push(g[i]);
-            }
+    // Checks for the exact
+    for (let i = 0; i < 4; i++){
+        if (g[i] == c[i]) {
+            black++;
+            code.splice(i, 1);
+            continue;
         }
+       // Checks for the contain
+        code = code.filter(e => {
+            if (g[i] != e) {
+                return true;
+            }
+            white++;
+            return false;
+        })
+        console.log(code);
     }
-    console.log(inCode);
-    return black;
+    console.log(`black ${black}, white ${white}, code ${code}`);
 }
 
 function permutation() {
