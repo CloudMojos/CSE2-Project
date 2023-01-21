@@ -4,7 +4,6 @@ const possibleCodes = permutation();
 board.addEventListener('submit', e => {
     e.preventDefault();
     const codeArray = getValues();
-    console.log(codeArray);
     mastermind(codeArray)
 });
 
@@ -18,45 +17,52 @@ function getValues() {
 
 function mastermind(codeArray) {
     // Initial guess
-    const initialGuess = [1, 1, 2, 2]
-    console.log(`Guess: ${initialGuess}`);
+    const initialGuess = [1, 1, 2, 2];
     makeGuess(initialGuess, codeArray);
 }
 
 function makeGuess(g, c) {
     // Check how many are ⚫, and ⚪
-    let black = 0; // black == exact position
-    let white = 0;  // white == in code, not exact pos
-    let code = [...c];
+    let response = [];
+    let code = [...c]; // 2, 2, 1, 2
+    let guess = [...g];
+    console.log(code);
+    console.log(guess);
     
-    // Checks for the exact
-    for (let i = 0; i < 4; i++){
-        if (g[i] == code[i]) {
-            black++;
-            code[i] = 0;
-            continue;
+    // Add exact
+    for (let i = 0; i < guess.length; i++) {
+        if (guess[i] === code[i]) {
+            response.push('⚫');
+            guess[i] = 0;
+            code[i] = -1;
         }
-       // Checks for the contain
-        code = code.filter(e => {
-            if (g[i] != e) {
-                return true;
-            }
-            white++;
-            return false;
-        })
-        console.log(code);
     }
-    console.log(`black ${black}, white ${white}, code ${code}`);
+    // Remove guesses that were already found to not duplicate
+    guess = guess.filter(e => e != 0 );
+
+    // Add not exact but contain
+    for (let i = 0; i < guess.length; i++) {
+        for (let j = 0; j < code.length; j++) {
+            guess[i];
+            code[j];
+            if (guess[i] === code[j]) {
+                response.push('⚪');
+                code[j] = -1;
+                break;
+            }
+        }
+    }
+    console.log(response);
 }
 
 function permutation() {
-    let possibleCodes = []
+    let possibleCodes = new Set();
     for (let i = 1; i < 7; i++) {
         for (let j = 1; j < 7; j++) {
             for (let k = 1; k < 7; k++) {
                 for (let l = 1; l < 7; l++)
                 {
-                    possibleCodes.push([i, j, k, l]);
+                    possibleCodes.add([i, j, k, l]);
                 }
             }
         }
