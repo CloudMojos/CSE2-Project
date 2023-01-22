@@ -69,13 +69,66 @@ header .links li:hover {
     background-color: whitesmoke;
     padding: 1rem;
     border-radius: 15px;
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
 }
 /* End Board */
 
 /* Board Children */
+#board .row {
+    min-height: clamp(20px, 10vw, 250px);
+    margin: 5px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border: 5px dashed #c9c9c9;
+}
+
+.col-1 {
+    grid-column-start: 2;
+}
+
+.col, .response {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col {
+    font-size: clamp(2rem, 7vw, 12rem);
+}
+
+.response-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.response {
+    font-size: clamp(1rem, 3.5vw, 7rem);
+}
+
+/* End Board Children */
+
+/* Form */
+#code {
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 15px;
+    padding: 5px;  
+    position: fixed;
+    bottom: 20px;
+}
+/* End Form */
+
+/* Form Children */
 .input {
+     background-color: whitesmoke;
     appearance: none;
     text-align: center;
-    font-size: clamp(25px, 7vw, 70px);
+    vertical-align: middle;
+    font-size: clamp(1rem, 5vw, 2rem);
     height: auto;
 }
+/* End Form Children */

@@ -20,9 +20,131 @@
     </header>
     <h1 style="text-align: center">Make The Code, Computer Will Guess It 🔮</h1>
     <br>
-    <form id="board">
+    <div id="board">
+        <div id="row-0" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-1" class="row">
+            <div class="col-1 col">🔴</div>
+            <div class="col-2 col">🔴</div>
+            <div class="col-3 col">🔴</div>
+            <div class="col-4 col">🔴</div>
+            <div class="response-grid">
+                <div class="response">⚪</div>
+                <div class="response">⚪</div>
+                <div class="response">⚪</div>
+                <div class="response">⚪</div>
+            </div>
+        </div>
+        <div id="row-2" class="row">
+            <div class="col-1 col">🟡</div>
+            <div class="col-2 col">🟡</div>
+            <div class="col-3 col">🟡</div>
+            <div class="col-4 col">🟡</div>
+            <div class="response-grid">
+                <div class="response">⚪</div>
+                <div class="response">⚪</div>
+                <div class="response">⚪</div>
+                <div class="response">⚪</div>
+            </div>
+        </div>
+        <div id="row-3" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-4"class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-5" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-6" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-7" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-8" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div id="row-9" class="row">
+            <div class="col-1 col"></div>
+            <div class="col-2 col"></div>
+            <div class="col-3 col"></div>
+            <div class="col-4 col"></div>
+            <div class="response-grid">
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+                <div class="response"></div>
+            </div>
+        </div>
+    </div>
+    <form id="code">
         <div class="form-row">
-            <select class="col-1 input" name="color" form="board">
+            <select class="col-1 input" name="color" form="code">
                 <option value="1">🔴</option>
                 <option value="2">🟠</option>
                 <option value="3">🟡</option>
@@ -30,7 +152,7 @@
                 <option value="5">🔵</option>
                 <option value="6">🟣</option>
             </select>
-            <select class="col-2 input" name="color" form="board">
+            <select class="col-2 input" name="color" form="code">
                 <option value="1">🔴</option>
                 <option value="2">🟠</option>
                 <option value="3">🟡</option>
@@ -38,7 +160,7 @@
                 <option value="5">🔵</option>
                 <option value="6">🟣</option>
             </select>
-            <select class="col-3 input" name="color" form="board">
+            <select class="col-3 input" name="color" form="code">
                 <option value="1">🔴</option>
                 <option value="2">🟠</option>
                 <option value="3">🟡</option>
@@ -46,7 +168,7 @@
                 <option value="5">🔵</option>
                 <option value="6">🟣</option>
             </select>
-            <select class="col-4 input" name="color" form="board">
+            <select class="col-4 input" name="color" form="code">
                 <option value="1">🔴</option>
                 <option value="2">🟠</option>
                 <option value="3">🟡</option>

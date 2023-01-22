@@ -1,10 +1,10 @@
-const board = document.querySelector('#board');
-let S = toyPermutation();
+const board = document.querySelector('#code');
+
 
 board.addEventListener('submit', e => {
     e.preventDefault();
-    // const secretCode = getValues();
-    const secretCode = [4, 2, 1];
+    const secretCode = getValues();
+
     // console.log(S);
     mastermind(secretCode);
 });
@@ -17,24 +17,42 @@ function getValues() {
     return [color1, color2, color3, color4]
 }
 
+function displayGuess() {
+
+}
+
+function displayResponse() {
+
+}
+
 function mastermind(secretCode) {
+    let S = permutation();
     let steps = 0;
-    let guess = findGuess(steps);
     let response = [];
     let table = {};
-    // Initial guess
-    guess = findGuess(steps, table);
-    response = makeGuess(guess, secretCode);
-    S = checkWin(guess, response);
-    table = createTable(); // Minmax
-    steps++;
-    guess = findGuess(steps, table);
+
+    while (steps < 10) {
+        guess = findGuess(steps, table); // Make the guess
+        displayGuess();
+        response = makeGuess(guess, secretCode); // Get the response
+        displayResponse();
+        // Break out of the loop if it's a win or else trim S
+        if (!checkWin(guess, response)) {
+            // Remove from S all the codes that are not consistent
+            S = trimPossibleCodes(guess, S, response);
+        } else { break; }
+        // Check the scores of each S to make guess, count the scores to make for the next guess.
+        table = createTable(S); // Apply minmax to create table
+        steps++;
+    }
+  
    
 }
 
 function findGuess(steps, table) {
-    let guess = [1, 2, 3];
+    let guess = [1, 1, 2, 2]; // Initial guess
     if (steps == 0) {
+        console.log("The Guess:" + guess);
         return guess;
     } else {
         // from table, find the maximum, if there is a tie, pick the first index.
@@ -48,11 +66,12 @@ function findGuess(steps, table) {
                 break;
             }
         }
+        console.log("The Guess:" + guess);
         return guess;
     }
 }
 
-function createTable() {
+function createTable(S) {
     let scores = {};
     let guessTable = {};
     // In an element of S, count the number of times of how many a response is in it.
@@ -131,15 +150,12 @@ function makeGuess(g, c) {
 }
 
 function checkWin(guess, response) {
-    if (response.every(e => e === '⚫') && response.length == 2) {
+    if (response.every(e => e === '⚫') && response.length == 4) {
         console.log("You've guessed the code!")
-    }
-
-    else {
-        // Remove from S all the codes that are not consistent
-        return trimPossibleCodes(guess, S, response);
-        // Check the scores of each S to make guess, count the scores to make for the next guess.
-
+        console.log("The code is: " + guess);
+        return true;
+    } else {  
+        return false;
     }
     // console.log(response);
 }
