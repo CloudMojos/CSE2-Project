@@ -21,23 +21,65 @@ function mastermind(secretCode) {
     let steps = 0;
     let guess = findGuess(steps);
     let response = [];
+    let table = {};
     // Initial guess
-    guess = findGuess(steps);
+    guess = findGuess(steps, table);
     response = makeGuess(guess, secretCode);
     S = checkWin(guess, response);
-    createTable(); // Minmax
+    table = createTable(); // Minmax
     steps++;
+    guess = findGuess(steps, table);
+   
 }
 
-function findGuess(steps) {
+function findGuess(steps, table) {
+    let guess = [1, 2, 3];
     if (steps == 0) {
-        return initialGuess = [1, 2, 3];
+        return guess;
     } else {
-        return 
+        // from table, find the maximum, if there is a tie, pick the first index.
+        let scoreArray = Object.values(table); 
+        let maxScore = Math.max(...scoreArray);
+        console.log(maxScore);
+        for (let p in table) {
+            // return the first seen max
+            if (table[p] == maxScore) {
+                guess = p.split(",").map(Number);
+                break;
+            }
+        }
+        return guess;
     }
 }
 
 function createTable() {
+    let scores = {};
+    let guessTable = {};
+    // In an element of S, count the number of times of how many a response is in it.
+    for (let i = 0; i < S.length; i++) {
+        // console.log('Score Checker: ' + S[i]);
+        for (let j = 0; j < S.length; j++) {
+
+            let score = makeGuess(S[j], S[i]);
+            if (S[j] === S[i]) { continue; }
+            if (score in scores) {
+                scores[score]++;
+            } else {
+                scores[score] = 1;
+            }
+        }
+
+        let array = Object.values(scores);
+        let max = Math.max(...array);
+        let finalScore = S.length - max;
+        guessTable[S[i]] = finalScore;
+
+        scores = {};
+    }
+    return guessTable;
+}
+
+function checkScores() {
     let scores = {};
     let scoreChecker = S.shift();
     console.log('Score Checker: ' + scoreChecker);
