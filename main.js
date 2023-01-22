@@ -26,7 +26,7 @@ function displayResponse(r, steps) {
     response.forEach((div, i) => {
         if (r[i]) {
             c = document.createTextNode(r[i]);
-        }
+        } else { c = document.createTextNode(''); }
         div.appendChild(c);
     })
 }
