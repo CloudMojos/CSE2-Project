@@ -17,12 +17,34 @@ function getValues() {
     return [color1, color2, color3, color4]
 }
 
-function displayGuess() {
-
-}
 
 function displayResponse() {
 
+}
+
+
+function displayGuess(guess, steps) {
+    
+    let rowId = '#row-' + steps; 
+    let row = document.querySelector(rowId);
+    let cols = row.querySelectorAll('.col');
+    cols.forEach((div, i) => {
+        let c = '';
+        if (guess[i] == 1) {
+            c += '🔴';
+        } else if (guess[i] == 2) {
+            c += '🟠';
+        } else if (guess[i] == 3) {
+            c += '🟡';
+        } else if (guess[i] == 4) {
+            c += '🟢';
+        } else if (guess[i] == 5) {
+            c += '🔵';
+        } else if (guess[i] == 6) {
+            c += '🟣';
+        } else { c += ''}
+        div.appendChild(document.createTextNode(c));
+    })
 }
 
 function mastermind(secretCode) {
@@ -33,7 +55,7 @@ function mastermind(secretCode) {
 
     while (steps < 10) {
         guess = findGuess(steps, table); // Make the guess
-        displayGuess();
+        displayGuess(guess, steps);
         response = makeGuess(guess, secretCode); // Get the response
         displayResponse();
         // Break out of the loop if it's a win or else trim S
