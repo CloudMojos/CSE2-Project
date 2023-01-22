@@ -18,8 +18,17 @@ function getValues() {
 }
 
 
-function displayResponse() {
-
+function displayResponse(r, steps) {
+    let rowId = '#row-' + steps; 
+    let row = document.querySelector(rowId);
+    let grid = row.querySelector('.response-grid');
+    let response = grid.querySelectorAll('.response');
+    response.forEach((div, i) => {
+        if (r[i]) {
+            c = document.createTextNode(r[i]);
+        }
+        div.appendChild(c);
+    })
 }
 
 
@@ -57,7 +66,7 @@ function mastermind(secretCode) {
         guess = findGuess(steps, table); // Make the guess
         displayGuess(guess, steps);
         response = makeGuess(guess, secretCode); // Get the response
-        displayResponse();
+        displayResponse(response, steps);
         // Break out of the loop if it's a win or else trim S
         if (!checkWin(guess, response)) {
             // Remove from S all the codes that are not consistent
