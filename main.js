@@ -1,19 +1,33 @@
-const board = document.querySelector('#code');
+const form = document.querySelector('#code');
+const board = document.querySelector('#board');
 
 
-board.addEventListener('submit', e => {
+form.addEventListener('submit', e => {
     e.preventDefault();
+
+    (() => {
+        rows = board.querySelectorAll('.row');
+        rows.forEach(row => {
+            children = row.children;
+            // children.forEach(child => {
+            //     console.log(child);
+            // })
+            console.log(children);
+        })
+    })();
+
     const secretCode = getValues();
 
     // console.log(S);
     mastermind(secretCode);
 });
 
+
 function getValues() {
-    const color1 = parseInt(board.querySelector('.col-1').value);
-    const color2 = parseInt(board.querySelector('.col-2').value);
-    const color3 = parseInt(board.querySelector('.col-3').value);
-    const color4 = parseInt(board.querySelector('.col-4').value);
+    const color1 = parseInt(form.querySelector('.col-1').value);
+    const color2 = parseInt(form.querySelector('.col-2').value);
+    const color3 = parseInt(form.querySelector('.col-3').value);
+    const color4 = parseInt(form.querySelector('.col-4').value);
     return [color1, color2, color3, color4]
 }
 
@@ -74,6 +88,7 @@ function mastermind(secretCode) {
         } else { break; }
         // Check the scores of each S to make guess, count the scores to make for the next guess.
         table = createTable(S); // Apply minmax to create table
+        console.table(table);
         steps++;
     }
   
@@ -197,17 +212,17 @@ function trimPossibleCodes(guess, S, response) {
     return S.filter((code) => response.toString() == makeGuess(code, guess).toString())
 }
 
-function toyPermutation() {
-    let possibleCodes = []
-    for (let i = 1; i < 5; i++) {
-        for (let j = 1; j < 5; j++) {
-            for (let k = 1; k < 5; k++) {
-                possibleCodes.push([i, j, k]);
-            }
-        }
-    }
-    return possibleCodes;
-}
+// function toyPermutation() {
+//     let possibleCodes = []
+//     for (let i = 1; i < 5; i++) {
+//         for (let j = 1; j < 5; j++) {
+//             for (let k = 1; k < 5; k++) {
+//                 possibleCodes.push([i, j, k]);
+//             }
+//         }
+//     }
+//     return possibleCodes;
+// }
 
 function permutation() {
     let possibleCodes = [];
