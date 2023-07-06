@@ -2,6 +2,7 @@ const form = document.querySelector("#code");
 const board = document.querySelector("#board");
 
 form.addEventListener("submit", (e) => {
+  clearOutPut();
   e.preventDefault();
 
   (() => {
@@ -20,6 +21,10 @@ form.addEventListener("submit", (e) => {
   // console.log(S);
   mastermind(secretCode);
 });
+
+function clearOutPut() {
+  location.reload();
+}
 
 function getValues() {
   const color1 = parseInt(form.querySelector(".col-1").value);
@@ -89,7 +94,6 @@ function mastermind(secretCode) {
     }
     // Check the scores of each S to make guess, count the scores to make for the next guess.
     table = createTable(S); // Apply minmax to create table
-    console.log(table);
     console.table(table);
     steps++;
   }
