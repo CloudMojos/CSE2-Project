@@ -2,11 +2,11 @@ const form = document.querySelector("#code");
 const board = document.querySelector("#board");
 
 form.addEventListener("submit", (e) => {
-  //   clearOutPut();
+  clearOutPut();
   e.preventDefault();
 
   (() => {
-    rows = board.querySelectorAll(".row");
+    let rows = board.querySelectorAll(".row");
     rows.forEach((row) => {
       children = row.children;
       // children.forEach(child => {
@@ -22,7 +22,30 @@ form.addEventListener("submit", (e) => {
   mastermind(secretCode);
 });
 
-function clearOutPut() {}
+function clearOutPut() {
+  const rows = board.querySelectorAll(".row");
+  rows.forEach((row, i) => {
+    let cols = row.querySelectorAll(".col");
+    cols.forEach((div, i) => {
+      div.textContent = "";
+      console.log(div.classList);
+      if (div.classList.contains("response-grid")) {
+        let response = div.querySelectorAll("*");
+        response.forEach((r) => {
+          r.textContent = "";
+        });
+      }
+    });
+  });
+
+  let responseGrids = document.querySelectorAll(".response-grid");
+  responseGrids.forEach((response) => {
+    let r = response.querySelectorAll(".response");
+    r.forEach((d) => {
+      d.textContent = "";
+    });
+  });
+}
 
 function getValues() {
   const color1 = parseInt(form.querySelector(".col-1").value);
