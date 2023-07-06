@@ -2,7 +2,7 @@ const form = document.querySelector("#code");
 const board = document.querySelector("#board");
 
 form.addEventListener("submit", (e) => {
-  clearOutPut();
+  //   clearOutPut();
   e.preventDefault();
 
   (() => {
@@ -22,9 +22,7 @@ form.addEventListener("submit", (e) => {
   mastermind(secretCode);
 });
 
-function clearOutPut() {
-  location.reload();
-}
+function clearOutPut() {}
 
 function getValues() {
   const color1 = parseInt(form.querySelector(".col-1").value);
